@@ -21,9 +21,19 @@ func app(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", app)
-	
-	if err := http.ListenAndServe(":8080", nil); err != nil { //TODO: deal with $PATH variable as port number
-		panic(err)
-	}
+        log.Print("starting server...")
+        http.HandleFunc("/", app)
+
+        // Determine port for HTTP service.
+        port := os.Getenv("PORT")
+        if port == "" {
+                port = "8080"
+                log.Printf("defaulting to port %s", port)
+        }
+
+        // Start HTTP server.
+        log.Printf("listening on port %s", port)
+        if err := http.ListenAndServe(":"+port, nil); err != nil {
+                log.Fatal(err)
+        }
 }
