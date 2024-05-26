@@ -22,9 +22,8 @@ func app(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", app)
-
-	// fmt.Printf("Starting server at port 5080")
-	if err := http.ListenAndServe(":80", nil); err != nil { //TODO: deal with $PATH variable as port number
+	
+	if err := http.ListenAndServe(":8080", nil); err != nil { //TODO: deal with $PATH variable as port number
 		panic(err)
 	}
 }
