@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 )
 
 func sep(s string, r rune) (string, string) {
@@ -20,20 +22,25 @@ func app(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func getPort() string {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+		log.Printf("defaulting to port %s", port)
+	}
+	return port
+}
+
 func main() {
-        log.Print("starting server...")
-        http.HandleFunc("/", app)
+	log.Print("starting server...")
+	http.HandleFunc("/", app)
 
-        // Determine port for HTTP service.
-        port := os.Getenv("PORT")
-        if port == "" {
-                port = "8080"
-                log.Printf("defaulting to port %s", port)
-        }
+	// Determine port for HTTP service.
+	port := getPort()
 
-        // Start HTTP server.
-        log.Printf("listening on port %s", port)
-        if err := http.ListenAndServe(":"+port, nil); err != nil {
-                log.Fatal(err)
-        }
+	// Start HTTP server.
+	log.Printf("listening on port %s", port)
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
+		log.Fatal(err)
+	}
 }
