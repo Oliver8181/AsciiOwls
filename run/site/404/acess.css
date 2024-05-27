@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: left;
+    overflow-wrap: break-word;
+}
+#contain>*{
+    margin: 0 1em 1em 1em;
+    display: block;
+}
+#contain{
+    margin:auto;
+    width: min(100%, 30em);
+    background-image: url(404.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+#error{
+    padding-top: min(50vh, 60%);
+}
+a{
+    all: unset;
+    width: fit-content;
+}
+a::before{
+    content: "• ";
+}

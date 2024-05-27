@@ -1,0 +1,8 @@
+<?xml-stylesheet type="text/css" href="style.css" ?>
+<svg xmlns="http://www.w3.org/2000/svg">
+<path d="M 0 0 h 1 v 1 h 2
+v -1
+h 1 -4
+M 0 2 h 2 v -1
+M 1 2 v 1 h 3" />
+</svg>

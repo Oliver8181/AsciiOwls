@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base href="404.html">
+        <link rel="stylesheet" href="404/acess.css">
+    </head>
+    <body>
+        <article id="contain">
+            <p id="error">This page is unavailable</p>
+            <p>However you may be after our:</p>
+            <a href="index.html">Editor Page</a>
+            <a href="editor/documentation.html">Documentation Page</a>
+            <a href="../nil">Feedback Page</a>
+            <a href="../nil">Repositoriy Page</a>
+            <a href="javascript:history.back()">Or Go Back</a>
+        </article>
+        <script>
+            /*URL stucture: [[protocol]://[www].[site]/[page]]
+            *                                   |      |
+            *                                   |      
+            */
+            const re = /^[^\/]*[\/]+(www\.)?(?<domain>[^\/]+)[\/]+(?<page>[^\?]+)/;
+            document.getElementById("error").innerHTML = window.location.href.replace(re, "At $<domain> <br>$<page> is unavailible");
+        </script>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+<svg width="12px" height="8px" xmlns="http://www.w3.org/2000/svg">
+    <path
+        transform="translate(1,1)"
+        stroke-width=".3"
+        stroke="#bbb"
+        fill="none"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+        d=" M 2 5 V 0 l -2 3 h 3
+        m 2 2
+        a 1.5 2, 0, 1 0, 0 -4
+        a 1.5 2, 0, 1 0, 0 4
+        m 4 0 V 0 l -2 3 h 3
+    "/>
+</svg>
