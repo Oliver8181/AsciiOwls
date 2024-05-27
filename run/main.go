@@ -24,7 +24,10 @@ func pathFilter(path string) string {
 }
 
 const pic = `
-	.\//_
+	 ___
+	<*,*>
+	[` + "`" + `-']
+	-"-"-
 `
 
 func app(w http.ResponseWriter, r *http.Request) {
@@ -41,7 +44,7 @@ func app(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "%s", data)
 	if filepath.Ext(path) == ".html" {
 		curr := time.Now()
-		fmt.Fprintf(w, "<!--%sos: %s,\nport: %s,\ntime: %s\n-->", pic, runtime.GOOS, os.Getenv("PORT"), curr.Format("2006-Jan-02 at 15:04:05 in timezone MST"))
+		fmt.Fprintf(w, "<!--%sOn a %s machine,\nAt port %s,\nSent at: %s\n-->", pic, runtime.GOOS, os.Getenv("PORT"), curr.Format("2006-Jan-02 at 15:04:05 in timezone MST"))
 	}
 
 }
