@@ -6,8 +6,9 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
-	"time"
 	"path/filepath"
+	"strings"
+	"time"
 )
 
 // func sep(s string, r rune) (string, string) {
@@ -26,8 +27,8 @@ func generate() string {
 }
 
 func wrap(head, body string) string {
-    	files, err := filepath.Glob("*")
-	return "<!DOCTYPE html><html><head>" + head + files + "</head><body>" + body + "</body></html>"
+	files, _ := filepath.Glob("*")
+	return "<!DOCTYPE html><html><head>" + head + "</head><body>" + body + "<br>" + strings.Join(files, ", ") + "</body></html>"
 }
 
 func app(w http.ResponseWriter, r *http.Request) {
