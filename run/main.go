@@ -30,11 +30,11 @@ func wrap(head, body string) string {
 
 func app(w http.ResponseWriter, r *http.Request) {
 	// _, query := sep(r.URL.Path, '?')
-	name, err := r.Cookie("name")
+	name, err := r.Cookie("__session")
 	if err != nil {
 		name := generate()
 		http.SetCookie(w, &http.Cookie{
-			Name:  "name",
+			Name:  "__session",
 			Value: name,
 
 			// Expires:  time.Time,
