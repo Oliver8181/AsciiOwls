@@ -30,6 +30,13 @@ const pic = `
 	-"-"-
 `
 
+func orUnknown(s string) string {
+	if s != "" {
+		return s
+	}
+	return "unknown"
+}
+
 func app(w http.ResponseWriter, r *http.Request) {
 	// if !filepath.IsAbs(r.URL.Path) {
 	// 	fmt.Println("error")
@@ -44,7 +51,13 @@ func app(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "%s", data)
 	if filepath.Ext(path) == ".html" {
 		curr := time.Now()
-		fmt.Fprintf(w, "<!--%sOn a %s machine,\nAt port %s,\nSent at: %s\n-->", pic, runtime.GOOS, os.Getenv("PORT"), curr.Format("2006-Jan-02 at 15:04:05 in timezone MST"))
+		fmt.Fprintf(w, "<!--%sFrom a %s machine at port %s,\nSent: %s\nYour agent is: %s\n-->",
+			pic,
+			runtime.GOOS,
+			orUnknown(os.Getenv("PORT")),
+			curr.Format("2006-Jan-02 at 15:04:05 in timezone MST"),
+			orUnknown(r.UserAgent()),
+		)
 	}
 
 }
