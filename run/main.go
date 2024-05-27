@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"runtime"
+	"time"
 )
 
 var replace = map[string]string{
@@ -21,17 +23,26 @@ func pathFilter(path string) string {
 	return path
 }
 
+const pic = `
+	.\//_
+`
+
 func app(w http.ResponseWriter, r *http.Request) {
 	// if !filepath.IsAbs(r.URL.Path) {
 	// 	fmt.Println("error")
 	// 	return
 	// }
 	path := pathFilter(r.URL.Path)
+	// insert.html if there is an error
 	data, err := os.ReadFile("site/" + path)
 	if err != nil {
 		data, _ = os.ReadFile("site/404.html")
 	}
 	fmt.Fprintf(w, "%s", data)
+	if filepath.Ext(path) == ".html" {
+		curr := time.Now()
+		fmt.Fprintf(w, "<!--%sos: %s,\nport: %s,\ntime: %s\n-->", pic, runtime.GOOS, os.Getenv("PORT"), curr.Format("2006-Jan-02 at 15:04:05 in timezone MST"))
+	}
 
 }
 
